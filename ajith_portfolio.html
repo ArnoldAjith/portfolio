@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajith P - Full Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #05d9f5, #0783e9, #075cdb, #0531f7);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -1;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero-content {
+            animation: fadeInUp 1s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .cta-button:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Floating Icons */
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .tech-icon {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .tech-icon:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .tech-icon:nth-child(2) { top: 60%; left: 80%; animation-delay: 1s; }
+        .tech-icon:nth-child(3) { top: 40%; left: 20%; animation-delay: 2s; }
+        .tech-icon:nth-child(4) { top: 70%; left: 60%; animation-delay: 3s; }
+        .tech-icon:nth-child(5) { top: 30%; left: 70%; animation-delay: 4s; }
+        .tech-icon:nth-child(6) { top: 80%; left: 30%; animation-delay: 5s; }
+        
+        /* Sections */
+        .section {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.95);
+            margin: 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .skill-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .skill-card h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .skill-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            margin: 3rem 0;
+            position: relative;
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 45%;
+            position: revert;
+            animation: slideIn 0.6s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+            animation: slideInRight 0.6s ease;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .timeline-date {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .job-title {
+            color: #667eea;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .company {
+            color: #764ba2;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .project-content {
+            padding: 2rem;
+        }
+        
+        .project-title {
+            color: #333;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .tech-tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* Contact Section */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .contact-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-item a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-item:hover a {
+            color: #667eea;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+            }
+            
+            .timeline-date {
+                left: 20px;
+                transform: none;
+            }
+            
+            .section {
+                margin: 10px;
+                padding: 40px 0;
+            }
+        }
+        
+        /* Scroll Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">AJITH P</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="floating-icons">
+            <i class="fab fa-java tech-icon"></i>
+            <i class="fab fa-js-square tech-icon"></i>
+            <i class="fab fa-react tech-icon"></i>
+            <i class="fab fa-angular tech-icon"></i>
+            <i class="fab fa-aws tech-icon"></i>
+            <i class="fas fa-database tech-icon"></i>
+        </div>
+        <div class="hero-content">
+            <h1>AJITH P</h1>
+            <p class="subtitle">Full Stack Developer</p>
+            <p style="margin-bottom: 2rem; opacity: 0.8;">Leveraging 3+ years of experience in building scalable applications</p>
+            <a href="#contact" class="cta-button">Get In Touch</a>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="section animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto;">
+                Dedicated and efficient Full Stack Developer with 3+ years experience in application layers, presentation layers, and databases. 
+                Proficient in building and optimizing enterprise-focused websites and applications while displaying effective, 
+                clean, and focused programming. Strong background in Java ecosystem with Spring Boot, Spring MVC, and modern frontend 
+                frameworks. Experienced in cloud deployment, database optimization, and mentoring junior developers.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="section animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">Core Competencies</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fab fa-java skill-icon"></i>
+                    <h3>Programming Languages</h3>
+                    <p>Java, JavaScript</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-server skill-icon"></i>
+                    <h3>Backend Technologies</h3>
+                    <p>Spring Boot, Spring MVC, Hibernate, Spring JPA, RESTful Services</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-react skill-icon"></i>
+                    <h3>Frontend Technologies</h3>
+                    <p>AngularJS, Angular, ReactJS</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-database skill-icon"></i>
+                    <h3>Database Technologies</h3>
+                    <p>MySQL, PostgreSQL, H2 Database, SQL Server</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-tools skill-icon"></i>
+                    <h3>Development Tools</h3>
+                    <p>IntelliJ IDEA, Eclipse, Apache Maven, Bitbucket</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-aws skill-icon"></i>
+                    <h3>Cloud & Infrastructure</h3>
+                    <p>AWS EC2, Apache Tomcat, Linux/Windows</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-sitemap skill-icon"></i>
+                    <h3>Architecture & Design</h3>
+                    <p>Microservices, MVC Pattern, API Design</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-chart-bar skill-icon"></i>
+                    <h3>Data Processing</h3>
+                    <p>Spring Batch, Data Visualization, ETL Processes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section id="experience" class="section animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2022 - Present</div>
+                    <div class="timeline-content">
+                        <h3 class="job-title">Senior Software Developer</h3>
+                        <p class="company">Ducima Analytics Pvt. Ltd., Chennai</p>
+                        <ul>
+                            <li>Led design and development of enterprise web applications using Spring MVC</li>
+                            <li>Architected and implemented microservices using Spring Boot and RESTful APIs</li>
+                            <li>Integrated Spring JPA with Hibernate for optimized database interactions</li>
+                            <li>Implemented Spring Security for robust user authentication and authorization</li>
+                            <li>Mentored junior developers and provided technical leadership</li>
+                            <li>Managed AWS EC2 deployments with load balancing configurations</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Apr 2021 - Oct 2021</div>
+                    <div class="timeline-content">
+                        <h3 class="job-title">Software Developer Intern</h3>
+                        <p class="company">VRWebmasterz Pvt. Ltd., Bangalore</p>
+                        <ul>
+                            <li>Assisted in developing applications with Spring MVC utilizing MVC design pattern</li>
+                            <li>Contributed to implementing RESTful APIs and integrating with AngularJS</li>
+                            <li>Gained hands-on experience in full-stack development and agile methodologies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects" class="section animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">Key Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Local News Initiative</h3>
+                        <p><strong>Client:</strong> Leading U.S. University</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Angular</span>
+                            <span class="tech-tag">Spring Boot</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">AWS EC2</span>
+                        </div>
+                        <p>Developed comprehensive data aggregation system to consolidate media and election data from multiple sources with secure API communication protocols.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Data Scraper API</h3>
+                        <p><strong>Client:</strong> Leading U.S. University</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Spring Boot</span>
+                            <span class="tech-tag">Jsoup</span>
+                            <span class="tech-tag">Selenium</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                        <p>Built robust API to extract U.S. demographics data with data visualization components using charts and interactive maps.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Snowflake Automation Tool</h3>
+                        <p><strong>Client:</strong> Leading U.S. University</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Spring Boot</span>
+                            <span class="tech-tag">Java 8</span>
+                            <span class="tech-tag">AngularJS</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                        <p>Automated complex SQL query execution in Snowflake environment with comprehensive workflows for data extraction and transformation.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Vikings API & Subscriber Engagement Index</h3>
+                        <p><strong>Clients:</strong> U.S. Real Estate Firm & University</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Spring Boot</span>
+                            <span class="tech-tag">Spring Batch</span>
+                            <span class="tech-tag">Microservices</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                        <p>Automated data extraction from client emails with microservice APIs for dashboard visualization, reducing manual intervention by 85%.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="section animate-on-scroll">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <h3>Email</h3>
+                    <a href="mailto:ajithpunniaseelan0604@gmail.com">ajithpunniaseelan0604@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone contact-icon"></i>
+                    <h3>Phone</h3>
+                    <a href="tel:+919597963144">+91 9597963144</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin contact-icon"></i>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/ajith-p-95a724211/" target="_blank">linkedin.com/in/ajith-p</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add stagger animation to skill cards and project cards
+        function addStaggerAnimation(selector, delay = 100) {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach((element, index) => {
+                element.style.animationDelay = `${index * delay}ms`;
+            });
+        }
+
+        window.addEventListener('load', function() {
+            addStaggerAnimation('.skill-card');
+            addStaggerAnimation('.project-card');
+        });
+
+        // Add floating animation to tech icons in hero section
+        const techIcons = document.querySelectorAll('.floating-icons .tech-icon');
+        techIcons.forEach((icon, index) => {
+            icon.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.2) rotate(15deg)';
+                this.style.color = 'rgba(255, 255, 255, 0.8)';
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+                this.style.color = 'rgba(255, 255, 255, 0.1)';
+            });
+        });
+    </script>
+</body>
+</html>
